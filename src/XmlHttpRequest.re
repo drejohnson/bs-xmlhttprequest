@@ -92,22 +92,3 @@ external removeEventListener :
   ) =>
   unit =
   "removeEventListener";
-
-let xhr = make();
-
-open_(xhr, ~method="GET", ~url="https://api.github.com/", ~async=true, ());
-
-setRequestHeader(xhr, "user-agent", "bs-xmlhttprequest");
-
-addEventListener(
-  xhr,
-  `load(
-    _event => {
-      let body = responseText(xhr);
-      let status = status(xhr);
-      Js.log2(status, body);
-    },
-  ),
-);
-
-send(xhr);
