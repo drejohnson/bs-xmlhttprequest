@@ -4,12 +4,12 @@
 ## Install
 yarn:
 ```
-yarn add stefanduberg/bs-xmlhttprequest
+yarn add bs-xmlhttprequest
 ```
 
 npm:
 ```
-npm install stefanduberg/bs-xmlhttprequest
+npm install bs-xmlhttprequest
 ```
 
 Add `bs-xmlhttprequest` to `bs-dependencies` in `bsconfig.json`.
