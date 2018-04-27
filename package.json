@@ -12,12 +12,12 @@
   "files": [
     "bsconfig.json",
     "src/XmlHttpRequest.re",
-    "src/xmlHttpRequestUpload.re"
+    "src/XmlHttpRequestUpload.re"
   ],
   "dependencies": {
     "bs-webapi": "^0.9.1"
   },
-  "devDependencies": {
+  "peerDependencies": {
     "bs-platform": "^3.0.0"
   }
 }
