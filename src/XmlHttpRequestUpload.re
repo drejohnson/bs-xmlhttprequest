@@ -8,8 +8,8 @@ external addEventListener :
       | `abort(Dom.event => unit)
       | `error(Dom.errorEvent => unit)
       | `load(Dom.event => unit)
-      | `loadend(Dom.progressEvent => unit)
-      | `loadstart(Dom.event => unit)
+      | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
+      | [@bs.as "loadstart"] `loadStart(Dom.event => unit)
       | `progress(Dom.progressEvent => unit)
       | `timeout(Dom.progressEvent => unit)
     ]
@@ -25,8 +25,8 @@ external removeEventListener :
       | `abort(Dom.event => unit)
       | `error(Dom.errorEvent => unit)
       | `load(Dom.event => unit)
-      | `loadend(Dom.progressEvent => unit)
-      | `loadstart(Dom.event => unit)
+      | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
+      | [@bs.as "loadstart"] `loadStart(Dom.event => unit)
       | `progress(Dom.progressEvent => unit)
       | `timeout(Dom.progressEvent => unit)
     ]
