@@ -21,8 +21,7 @@ let decodeReadyState =
 
 [@bs.get] external readyStateExternal : t => int = "readyState";
 
-let readyState = (xhr: t) =>
-  decodeReadyState(readyStateExternal(xhr));
+let readyState = (xhr: t) => decodeReadyState(readyStateExternal(xhr));
 
 [@bs.get]
 external responseArrayBuffer : t => Js.Nullable.t(Js.Typed_array.array_buffer) =
@@ -108,18 +107,40 @@ external readyStateChange : (t, Dom.event => unit) => unit =
   "readystatechange";
 
 [@bs.send]
+external onReadyStateChange : (t, Dom.event => unit) => unit =
+  "onreadystatechange";
+
+[@bs.send] external onAbort : (t, Dom.event => unit) => unit = "onabort";
+
+[@bs.send] external onError : (t, Dom.errorEvent => unit) => unit = "onerror";
+
+[@bs.send] external onLoad : (t, Dom.event => unit) => unit = "onload";
+
+[@bs.send]
+external onLoadEnd : (t, Dom.progressEvent => unit) => unit = "onloadend";
+
+[@bs.send]
+external onLoadStart : (t, Dom.progressEvent => unit) => unit = "onloadstart";
+
+[@bs.send]
+external onProgress : (t, Dom.progressEvent => unit) => unit = "onprogress";
+
+[@bs.send]
+external onTimeout : (t, Dom.progressEvent => unit) => unit = "ontimeout";
+
+[@bs.send]
 external addEventListener :
   (
     t,
     [@bs.string] [
-      | [@bs.as "readystatechange"] `readyStateChange((. Dom.event) => unit)
-      | `abort((. Dom.event) => unit)
-      | `error((. Dom.errorEvent) => unit)
-      | `load((. Dom.event) => unit)
-      | [@bs.as "loadend"] `loadEnd((. Dom.progressEvent) => unit)
-      | [@bs.as "loadstart"] `loadStart((. Dom.event) => unit)
-      | `progress((. Dom.progressEvent) => unit)
-      | `timeout((. Dom.progressEvent) => unit)
+      | [@bs.as "readystatechange"] `readyStateChange(Dom.event => unit)
+      | `abort(Dom.event => unit)
+      | `error(Dom.errorEvent => unit)
+      | `load(Dom.event => unit)
+      | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
+      | [@bs.as "loadstart"] `loadStart(Dom.progressEvent => unit)
+      | `progress(Dom.progressEvent => unit)
+      | `timeout(Dom.progressEvent => unit)
     ]
   ) =>
   unit =
@@ -130,14 +151,14 @@ external removeEventListener :
   (
     t,
     [@bs.string] [
-      | [@bs.as "readystatechange"] `readyStateChange((. Dom.event) => unit)
-      | `abort((. Dom.event) => unit)
-      | `error((. Dom.errorEvent) => unit)
-      | `load((. Dom.event) => unit)
-      | [@bs.as "loadend"] `loadEnd((. Dom.progressEvent) => unit)
-      | [@bs.as "loadstart"] `loadStart((. Dom.event) => unit)
-      | `progress((. Dom.progressEvent) => unit)
-      | `timeout((. Dom.progressEvent) => unit)
+      | [@bs.as "readystatechange"] `readyStateChange(Dom.event => unit)
+      | `abort(Dom.event => unit)
+      | `error(Dom.errorEvent => unit)
+      | `load(Dom.event => unit)
+      | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
+      | [@bs.as "loadstart"] `loadStart(Dom.progressEvent => unit)
+      | `progress(Dom.progressEvent => unit)
+      | `timeout(Dom.progressEvent => unit)
     ]
   ) =>
   unit =
