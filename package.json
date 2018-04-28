@@ -6,7 +6,9 @@
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world"
   },
-  "keywords": ["BuckleScript"],
+  "keywords": [
+    "BuckleScript"
+  ],
   "author": "Stefan Duberg",
   "license": "MIT",
   "files": [
@@ -18,6 +20,9 @@
     "bs-webapi": "^0.9.1"
   },
   "peerDependencies": {
+    "bs-platform": "^3.0.0"
+  },
+  "devDependencies": {
     "bs-platform": "^3.0.0"
   }
 }

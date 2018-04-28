@@ -1,21 +1,21 @@
 type t;
 
-[@bs.send] external onAbort : (t, Dom.event => unit) => unit = "onabort";
+[@bs.set] external onAbort : (t, Dom.event => unit) => unit = "onabort";
 
-[@bs.send] external onError : (t, Dom.errorEvent => unit) => unit = "onerror";
+[@bs.set] external onError : (t, Dom.errorEvent => unit) => unit = "onerror";
 
-[@bs.send] external onLoad : (t, Dom.event => unit) => unit = "onload";
+[@bs.set] external onLoad : (t, Dom.event => unit) => unit = "onload";
 
-[@bs.send]
+[@bs.set]
 external onLoadEnd : (t, Dom.progressEvent => unit) => unit = "onloadend";
 
-[@bs.send]
+[@bs.set]
 external onLoadStart : (t, Dom.progressEvent => unit) => unit = "onloadstart";
 
-[@bs.send]
+[@bs.set]
 external onProgress : (t, Dom.progressEvent => unit) => unit = "onprogress";
 
-[@bs.send]
+[@bs.set]
 external onTimeout : (t, Dom.progressEvent => unit) => unit = "ontimeout";
 
 [@bs.send]

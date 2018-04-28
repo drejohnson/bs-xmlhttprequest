@@ -102,30 +102,26 @@ external sendArrayBuffer : (t, Js.Typed_array.array_buffer) => unit = "send";
 
 [@bs.send] external setRequestHeader : (t, string, string) => unit = "";
 
-[@bs.send]
-external readyStateChange : (t, Dom.event => unit) => unit =
-  "readystatechange";
-
-[@bs.send]
+[@bs.set]
 external onReadyStateChange : (t, Dom.event => unit) => unit =
   "onreadystatechange";
 
-[@bs.send] external onAbort : (t, Dom.event => unit) => unit = "onabort";
+[@bs.set] external onAbort : (t, Dom.event => unit) => unit = "onabort";
 
-[@bs.send] external onError : (t, Dom.errorEvent => unit) => unit = "onerror";
+[@bs.set] external onError : (t, Dom.errorEvent => unit) => unit = "onerror";
 
-[@bs.send] external onLoad : (t, Dom.event => unit) => unit = "onload";
+[@bs.set] external onLoad : (t, Dom.event => unit) => unit = "onload";
 
-[@bs.send]
+[@bs.set]
 external onLoadEnd : (t, Dom.progressEvent => unit) => unit = "onloadend";
 
-[@bs.send]
+[@bs.set]
 external onLoadStart : (t, Dom.progressEvent => unit) => unit = "onloadstart";
 
-[@bs.send]
+[@bs.set]
 external onProgress : (t, Dom.progressEvent => unit) => unit = "onprogress";
 
-[@bs.send]
+[@bs.set]
 external onTimeout : (t, Dom.progressEvent => unit) => unit = "ontimeout";
 
 [@bs.send]
@@ -133,13 +129,13 @@ external addEventListener :
   (
     t,
     [@bs.string] [
-      | [@bs.as "readystatechange"] `readyStateChange(Dom.event => unit)
       | `abort(Dom.event => unit)
       | `error(Dom.errorEvent => unit)
       | `load(Dom.event => unit)
       | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
       | [@bs.as "loadstart"] `loadStart(Dom.progressEvent => unit)
       | `progress(Dom.progressEvent => unit)
+      | [@bs.as "readystatechange"] `readyStateChange(Dom.event => unit)
       | `timeout(Dom.progressEvent => unit)
     ]
   ) =>
@@ -151,13 +147,13 @@ external removeEventListener :
   (
     t,
     [@bs.string] [
-      | [@bs.as "readystatechange"] `readyStateChange(Dom.event => unit)
       | `abort(Dom.event => unit)
       | `error(Dom.errorEvent => unit)
       | `load(Dom.event => unit)
       | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
       | [@bs.as "loadstart"] `loadStart(Dom.progressEvent => unit)
       | `progress(Dom.progressEvent => unit)
+      | [@bs.as "readystatechange"] `readyStateChange(Dom.event => unit)
       | `timeout(Dom.progressEvent => unit)
     ]
   ) =>
