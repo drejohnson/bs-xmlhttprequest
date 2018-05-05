@@ -106,11 +106,13 @@ external sendArrayBuffer : (t, Js.Typed_array.array_buffer) => unit = "send";
 external onReadyStateChange : (t, Dom.event => unit) => unit =
   "onreadystatechange";
 
-[@bs.set] external onAbort : (t, Dom.event => unit) => unit = "onabort";
+[@bs.set]
+external onAbort : (t, Dom.progressEvent => unit) => unit = "onabort";
 
-[@bs.set] external onError : (t, Dom.errorEvent => unit) => unit = "onerror";
+[@bs.set]
+external onError : (t, Dom.progressEvent => unit) => unit = "onerror";
 
-[@bs.set] external onLoad : (t, Dom.event => unit) => unit = "onload";
+[@bs.set] external onLoad : (t, Dom.progressEvent => unit) => unit = "onload";
 
 [@bs.set]
 external onLoadEnd : (t, Dom.progressEvent => unit) => unit = "onloadend";
@@ -129,9 +131,9 @@ external addEventListener :
   (
     t,
     [@bs.string] [
-      | `abort(Dom.event => unit)
-      | `error(Dom.errorEvent => unit)
-      | `load(Dom.event => unit)
+      | `abort(Dom.progressEvent => unit)
+      | `error(Dom.progressEvent => unit)
+      | `load(Dom.progressEvent => unit)
       | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
       | [@bs.as "loadstart"] `loadStart(Dom.progressEvent => unit)
       | `progress(Dom.progressEvent => unit)
@@ -147,9 +149,9 @@ external addEventListenerWithOptions :
   (
     t,
     [@bs.string] [
-      | `abort(Dom.event => unit)
-      | `error(Dom.errorEvent => unit)
-      | `load(Dom.event => unit)
+      | `abort(Dom.progressEvent => unit)
+      | `error(Dom.progressEvent => unit)
+      | `load(Dom.progressEvent => unit)
       | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
       | [@bs.as "loadstart"] `loadStart(Dom.progressEvent => unit)
       | `progress(Dom.progressEvent => unit)
@@ -171,9 +173,9 @@ external removeEventListener :
   (
     t,
     [@bs.string] [
-      | `abort(Dom.event => unit)
-      | `error(Dom.errorEvent => unit)
-      | `load(Dom.event => unit)
+      | `abort(Dom.progressEvent => unit)
+      | `error(Dom.progressEvent => unit)
+      | `load(Dom.progressEvent => unit)
       | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
       | [@bs.as "loadstart"] `loadStart(Dom.progressEvent => unit)
       | `progress(Dom.progressEvent => unit)
@@ -189,9 +191,9 @@ external removeEventListenerWithOptions :
   (
     t,
     [@bs.string] [
-      | `abort(Dom.event => unit)
-      | `error(Dom.errorEvent => unit)
-      | `load(Dom.event => unit)
+      | `abort(Dom.progressEvent => unit)
+      | `error(Dom.progressEvent => unit)
+      | `load(Dom.progressEvent => unit)
       | [@bs.as "loadend"] `loadEnd(Dom.progressEvent => unit)
       | [@bs.as "loadstart"] `loadStart(Dom.progressEvent => unit)
       | `progress(Dom.progressEvent => unit)
