@@ -11,6 +11,11 @@
   ],
   "author": "Stefan Duberg",
   "license": "MIT",
+  "homepage": "https://github.com/stefanduberg/bs-xmlhttprequest#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stefanduberg/bs-xmlhttprequest.git"
+  },
   "files": [
     "bsconfig.json",
     "src/XmlHttpRequest.re",
