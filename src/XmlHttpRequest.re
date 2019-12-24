@@ -1,4 +1,5 @@
 type t;
+type response;
 
 type readyState =
   | Unsent
@@ -32,6 +33,10 @@ let decodeReadyState =
 
 let readyState = (xhr: t) => decodeReadyState(xhr->readyStateExternal);
 
+[@bs.get] external response: t => response = "response";
+
+[@bs.get] external responseType: t => string = "responseType";
+
 [@bs.get]
 external responseArrayBuffer: t => Js.Nullable.t(Js.Typed_array.array_buffer) =
   "response";
@@ -41,11 +46,9 @@ external responseDocument: t => Js.Nullable.t(Dom.document) = "response";
 
 [@bs.get] external responseJson: t => Js.Nullable.t(Js.Json.t) = "response";
 
-[@bs.get] external responseText: t => Js.Nullable.t(string) = "responseText";
-
-[@bs.get] external responseType: t => string = "responseType";
-
 [@bs.get] external responseUrl: t => Js.Nullable.t(string) = "responseUrl";
+
+[@bs.get] external responseText: t => Js.Nullable.t(string) = "responseText";
 
 [@bs.get]
 external responseXml: t => Js.Nullable.t(Dom.xmlDocument) = "responseXml";
