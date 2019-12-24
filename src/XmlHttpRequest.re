@@ -8,6 +8,13 @@ type readyState =
   | Done
   | Unknown;
 
+type requestMethod =
+  | GET
+  | POST
+  | PUT
+  | PATCH
+  | DELETE;
+
 let decodeReadyState =
   fun
   | 0 => Unsent
@@ -17,31 +24,34 @@ let decodeReadyState =
   | 4 => Done
   | _ => Unknown;
 
-[@bs.new] external make : unit => t = "XMLHttpRequest";
+[@bs.new] external make: unit => t = "XMLHttpRequest";
 
-[@bs.get] external readyStateExternal : t => int = "readyState";
+// Properties
 
-let readyState = (xhr: t) => decodeReadyState(readyStateExternal(xhr));
+[@bs.get] external readyStateExternal: t => int = "readyState";
+
+let readyState = (xhr: t) => decodeReadyState(xhr->readyStateExternal);
 
 [@bs.get]
-external responseArrayBuffer : t => Js.Nullable.t(Js.Typed_array.array_buffer) =
+external responseArrayBuffer: t => Js.Nullable.t(Js.Typed_array.array_buffer) =
   "response";
 
 [@bs.get]
-external responseDocument : t => Js.Nullable.t(Dom.document) = "response";
+external responseDocument: t => Js.Nullable.t(Dom.document) = "response";
 
-[@bs.get] external responseJson : t => Js.Nullable.t(Js.Json.t) = "response";
+[@bs.get] external responseJson: t => Js.Nullable.t(Js.Json.t) = "response";
 
-[@bs.get] external responseText : t => Js.Nullable.t(string) = "";
+[@bs.get] external responseText: t => Js.Nullable.t(string) = "responseText";
 
-[@bs.get] external responseType : t => string = "";
+[@bs.get] external responseType: t => string = "responseType";
 
-[@bs.get] external responseUrl : t => Js.Nullable.t(string) = "";
+[@bs.get] external responseUrl: t => Js.Nullable.t(string) = "responseUrl";
 
-[@bs.get] external responseXml : t => Js.Nullable.t(Dom.xmlDocument) = "";
+[@bs.get]
+external responseXml: t => Js.Nullable.t(Dom.xmlDocument) = "responseXml";
 
 [@bs.set]
-external setResponseType :
+external setResponseType:
   (
     t,
     [@bs.string] [
@@ -54,80 +64,77 @@ external setResponseType :
   string =
   "responseType";
 
-[@bs.get] external status : t => int = "";
+[@bs.get] external status: t => int = "status";
 
-[@bs.get] external statusText : t => string = "";
+[@bs.get] external statusText: t => string = "statusText";
 
-[@bs.get] external timeout : t => int = "";
+[@bs.get] external upload: t => XmlHttpRequestUpload.t = "upload";
 
-[@bs.get] external upload : t => XmlHttpRequestUpload.t = "";
+[@bs.get] external timeout: t => int = "timeout";
 
-[@bs.set] external setTimeout : (t, int) => int = "timeout";
+[@bs.set] external setTimeout: (t, int) => int = "timeout";
 
-[@bs.get] external withCredentials : t => bool = "";
+[@bs.get] external withCredentials: t => bool = "withCredentials";
 
-[@bs.set] external setWithCredentials : (t, bool) => bool = "withCredentials";
+[@bs.set] external setWithCredentials: (t, bool) => bool = "withCredentials";
 
-[@bs.send] external abort : t => unit = "";
+// Methods
 
-[@bs.send] external getAllResponseHeaders : t => Js.Nullable.t(string) = "";
-
-[@bs.send]
-external getResponseHeader : (t, string) => Js.Nullable.t(string) = "";
+[@bs.send] external abort: t => unit = "abort";
 
 [@bs.send]
-external open_ :
-  (
-    t,
-    ~method: string,
-    ~url: string,
-    ~async: bool=?,
-    ~user: string=?,
-    ~password: string=?,
-    unit
-  ) =>
-  unit =
+external getAllResponseHeaders: t => Js.Nullable.t(string) =
+  "getAllResponseHeaders";
+
+[@bs.send]
+external getResponseHeader: (t, string) => Js.Nullable.t(string) =
+  "getResponseHeader";
+
+[@bs.send]
+external open_:
+  (t, string, string, option(bool), option(string), option(string)) => unit =
   "open";
 
-[@bs.send] external overrideMimeType : (t, string) => unit = "";
+[@bs.send] external overrideMimeType: (t, string) => unit = "overrideMimeType";
 
-[@bs.send] external send : t => unit = "send";
+[@bs.send] external send: t => unit = "send";
 
 [@bs.send]
-external sendArrayBuffer : (t, Js.Typed_array.array_buffer) => unit = "send";
+external setRequestHeader: (t, string, string) => unit = "setRequestHeader";
 
-[@bs.send] external sendDocument : (t, Dom.document) => unit = "send";
+[@bs.send]
+external sendArrayBuffer: (t, Js.Typed_array.array_buffer) => unit = "send";
 
-[@bs.send] external sendString : (t, string) => unit = "send";
+[@bs.send] external sendDocument: (t, Dom.document) => unit = "send";
 
-[@bs.send] external setRequestHeader : (t, string, string) => unit = "";
+[@bs.send] external sendString: (t, string) => unit = "send";
+
+// Events
 
 [@bs.set]
-external onReadyStateChange : (t, Dom.event => unit) => unit =
+external onReadyStateChange: (t, Dom.event => unit) => unit =
   "onreadystatechange";
 
-[@bs.set]
-external onAbort : (t, Dom.progressEvent => unit) => unit = "onabort";
+[@bs.set] external onAbort: (t, Dom.progressEvent => unit) => unit = "onabort";
+
+[@bs.set] external onError: (t, Dom.progressEvent => unit) => unit = "onerror";
+
+[@bs.set] external onLoad: (t, Dom.progressEvent => unit) => unit = "onload";
 
 [@bs.set]
-external onError : (t, Dom.progressEvent => unit) => unit = "onerror";
-
-[@bs.set] external onLoad : (t, Dom.progressEvent => unit) => unit = "onload";
+external onLoadEnd: (t, Dom.progressEvent => unit) => unit = "onloadend";
 
 [@bs.set]
-external onLoadEnd : (t, Dom.progressEvent => unit) => unit = "onloadend";
+external onLoadStart: (t, Dom.progressEvent => unit) => unit = "onloadstart";
 
 [@bs.set]
-external onLoadStart : (t, Dom.progressEvent => unit) => unit = "onloadstart";
+external onProgress: (t, Dom.progressEvent => unit) => unit = "onprogress";
 
 [@bs.set]
-external onProgress : (t, Dom.progressEvent => unit) => unit = "onprogress";
-
-[@bs.set]
-external onTimeout : (t, Dom.progressEvent => unit) => unit = "ontimeout";
+external onTimeout: (t, Dom.progressEvent => unit) => unit = "ontimeout";
 
 [@bs.send]
-external addEventListener :
+external addEventListener:
   (
     t,
     [@bs.string] [
@@ -145,7 +152,7 @@ external addEventListener :
   "addEventListener";
 
 [@bs.send]
-external addEventListenerWithOptions :
+external addEventListenerWithOptions:
   (
     t,
     [@bs.string] [
@@ -169,7 +176,7 @@ external addEventListenerWithOptions :
   "addEventListener";
 
 [@bs.send]
-external removeEventListener :
+external removeEventListener:
   (
     t,
     [@bs.string] [
@@ -187,7 +194,7 @@ external removeEventListener :
   "removeEventListener";
 
 [@bs.send]
-external removeEventListenerWithOptions :
+external removeEventListenerWithOptions:
   (
     t,
     [@bs.string] [
