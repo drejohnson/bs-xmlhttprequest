@@ -1,20 +1,21 @@
 {
   "name": "bs-xmlhttprequest",
-  "version": "0.1.7",
+  "version": "1.0.0",
   "scripts": {
     "build": "bsb -make-world",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world"
   },
   "keywords": [
-    "BuckleScript"
+    "BuckleScript",
+    "xmlHttpRequest"
   ],
-  "author": "Stefan Duberg",
+  "author": "DeAndre Johnson",
   "license": "MIT",
-  "homepage": "https://github.com/stefanduberg/bs-xmlhttprequest#readme",
+  "homepage": "https://github.com/drejohnson/bs-xmlhttprequest#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stefanduberg/bs-xmlhttprequest.git"
+    "url": "https://github.com/drejohnson/bs-xmlhttprequest.git"
   },
   "files": [
     "bsconfig.json",
@@ -22,12 +23,12 @@
     "src/XmlHttpRequestUpload.re"
   ],
   "dependencies": {
-    "bs-webapi": "^0.9.1"
+    "bs-webapi": "^0.15.6"
   },
   "peerDependencies": {
-    "bs-platform": "^3.0.0"
+    "bs-platform": "^7.0.0"
   },
   "devDependencies": {
-    "bs-platform": "^3.0.0"
+    "bs-platform": "^7.0.0"
   }
 }
