@@ -18,7 +18,7 @@ let decodeReadyState =
   | 4 => Done
   | _ => Unknown;
 
-[@bs.new] external make: unit => t = "XMLHttpRequest";
+[@bs.new] external makeXMLHttpRequest: unit => t = "XMLHttpRequest";
 
 // Properties
 

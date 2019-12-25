@@ -21,7 +21,7 @@ Add `bs-xmlhttprequest` to `bs-dependencies` in `bsconfig.json`.
 ## Example
 
 ```reason
-let xhr = XmlHttpRequest.make();
+let xhr = XmlHttpRequest.makeXMLHttpRequest();
 
 XmlHttpRequest.open_(xhr, ~method="GET", ~url="https://api.github.com/", ~async=true, ());
 
