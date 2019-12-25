@@ -88,7 +88,16 @@ external getResponseHeader: (t, string) => Js.Nullable.t(string) =
 
 [@bs.send]
 external open_:
-  (t, string, string, bool, option(string), option(string)) => unit =
+  (
+    t,
+    ~verb: string,
+    ~url: string,
+    ~async: bool=?,
+    ~user: string=?,
+    ~password: string=?,
+    unit
+  ) =>
+  unit =
   "open";
 
 [@bs.send] external overrideMimeType: (t, string) => unit = "overrideMimeType";
