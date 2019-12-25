@@ -9,13 +9,6 @@ type readyState =
   | Done
   | Unknown;
 
-type requestMethod =
-  | GET
-  | POST
-  | PUT
-  | PATCH
-  | DELETE;
-
 let decodeReadyState =
   fun
   | 0 => Unsent
