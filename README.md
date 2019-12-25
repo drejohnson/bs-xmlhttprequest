@@ -1,13 +1,17 @@
 # bs-xmlhttprequest
+
 [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/XMLHttpRequest) bindings for [BuckleScript](https://bucklescript.github.io).
 
 ## Install
+
 yarn:
+
 ```
 yarn add bs-xmlhttprequest
 ```
 
 npm:
+
 ```
 npm install bs-xmlhttprequest
 ```
@@ -15,6 +19,7 @@ npm install bs-xmlhttprequest
 Add `bs-xmlhttprequest` to `bs-dependencies` in `bsconfig.json`.
 
 ## Example
+
 ```reason
 let xhr = XmlHttpRequest.make();
 
@@ -35,3 +40,5 @@ XmlHttpRequest.addEventListener(
 
 XmlHttpRequest.send(xhr);
 ```
+
+> These bindings were forked from [bs-xmlhttprequest](https://github.com/stefanduberg/bs-xmlhttprequest)
